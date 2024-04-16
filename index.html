@@ -28,7 +28,7 @@
     </div>
     <script>
         const baseValue = 2300;
-        const incrementPerSecond = 0.000005787037;
+        const incrementPerTenthSecond = 0.0000005787037;
         const startDate = new Date('2024-04-16').getTime(); // Starting from April 16, 2024
         const endDate = new Date('2026-01-01').getTime(); // Up to the end of 2025
 
@@ -39,15 +39,15 @@
                 return;
             }
             
-            const secondsSinceStart = Math.floor((currentDate - startDate) / 1000);
-            const currentValue = baseValue + (secondsSinceStart * incrementPerSecond);
-            document.getElementById('valueDisplay').innerHTML = `$${currentValue.toFixed(6)}`;
+            const tenthsSinceStart = Math.floor((currentDate - startDate) / 100);
+            const currentValue = baseValue + (tenthsSinceStart * incrementPerTenthSecond);
+            document.getElementById('valueDisplay').innerHTML = `$${currentValue.toFixed(9)}`;
         }
 
         // Initial display update
         updateValue();
-        // Update the displayed value every 1000 milliseconds (1 second)
-        const valueInterval = setInterval(updateValue, 1000);
+        // Update the displayed value every 100 milliseconds (0.1 seconds)
+        const valueInterval = setInterval(updateValue, 100);
     </script>
 </body>
 </html>
