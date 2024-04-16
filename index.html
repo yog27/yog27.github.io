@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incremental Value Counter</title>
+    <title>Real-Time Incremental Value Counter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,11 +23,12 @@
 </head>
 <body>
     <div class="counter-container">
-        <h1>Value Increment Counter</h1>
+        <h1>Real-Time Value Increment Counter</h1>
         <div class="value-display" id="valueDisplay" style="font-size: 24px; margin-top: 20px;"></div>
     </div>
     <script>
         const baseValue = 2300;
+        const incrementPerSecond = 0.000005787037;
         const startDate = new Date('2024-04-16').getTime(); // Starting from April 16, 2024
         const endDate = new Date('2026-01-01').getTime(); // Up to the end of 2025
 
@@ -38,9 +39,9 @@
                 return;
             }
             
-            const daysSinceStart = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
-            const currentValue = baseValue + (daysSinceStart * 0.5);
-            document.getElementById('valueDisplay').innerHTML = `$${currentValue.toFixed(2)}`;
+            const secondsSinceStart = Math.floor((currentDate - startDate) / 1000);
+            const currentValue = baseValue + (secondsSinceStart * incrementPerSecond);
+            document.getElementById('valueDisplay').innerHTML = `$${currentValue.toFixed(6)}`;
         }
 
         // Initial display update
