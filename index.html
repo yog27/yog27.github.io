@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; background-color: black; color: white;">
+    <div class="countdown-container" style="background-color: #111; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); max-width: 400px; margin: 0 auto;">
+        <h1 style="color: white;">Countdown Timer</h1>
+        <div class="countdown-timer" style="margin-top: 20px;">
+            <div class="progress-bar" style="width: 100%; height: 20px; background-color: #ccc; border-radius: 10px; position: relative;">
+                <div class="progress" style="width: 0; height: 100%; background-color: #00eeff; border-radius: 10px; transition: width 0.2s ease-in-out;"></div>
+            </div>
+            <div class="timer" id="timer" style="font-size: 24px; margin-top: 10px;"></div>
+            <div class="percentage" id="percentage" style="font-size: 18px; margin-top: 10px;"></div>
+        </div>
+    </div>
+    <script>
+        // Set the target date (June 15, 2024)
+        const targetDate = new Date('June 15, 2024 00:00:00').getTime();
+        const referenceDate = new Date('June 15, 2024 00:00:00').getTime() - (270 * 24 * 60 * 60 * 1000); // 270 days before targetDate
+
+        // Update the countdown and percentage 30 times a second
+        const timerInterval = setInterval(() => {
+            const currentDate = new Date().getTime();
+            const timeRemaining = targetDate - currentDate;
+
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('timer').innerHTML = 'Countdown expired!';
+                return;
+            }
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            const milliseconds = timeRemaining % 1000;
+
+            const countdownText = `${days}d ${hours}h ${minutes}m ${seconds}s ${milliseconds}ms`;
+            document.getElementById('timer').innerHTML = countdownText;
+
+            const progressPercentage = ((currentDate - referenceDate) / (targetDate - referenceDate)) * 100;
+            const formattedPercentage = progressPercentage.toFixed(6); // Format to four decimal places
+            document.getElementById('percentage').innerHTML = `${formattedPercentage}%`;
+
+            const progressBar = document.querySelector('.progress');
+            progressBar.style.width = `${progressPercentage}%`;
+        }, 33); // Update every 33 milliseconds (30 times a second)
+    </script>
+</body>
+</html>
