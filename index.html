@@ -24,7 +24,8 @@
 <body>
     <div class="counter-container">
         <h1>Real-Time Value Increment Counter</h1>
-        <div class="value-display" id="valueDisplay" style="font-size: 24px; margin-top: 20px;"></div>
+        <div class="gold-price" id="goldPrice" style="font-size: 20px; margin-bottom: 10px;"></div>
+        <div class="value-display" id="valueDisplay" style="font-size: 24px;"></div>
     </div>
     <script>
         const baseValue = 2300;
@@ -44,10 +45,26 @@
             document.getElementById('valueDisplay').innerHTML = `$${currentValue.toFixed(9)}`;
         }
 
+        function fetchGoldPrice() {
+            fetch('https://api.coingecko.com/api/v3/simple/price?ids=pax-gold&vs_currencies=usd')
+                .then(response => response.json())
+                .then(data => {
+                    const goldPrice = data['pax-gold'].usd;
+                    document.getElementById('goldPrice').innerHTML = `PAX Gold Price: $${goldPrice.toFixed(2)}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching gold price:', error);
+                });
+        }
+
         // Initial display update
         updateValue();
+        fetchGoldPrice();
+
         // Update the displayed value every 100 milliseconds (0.1 seconds)
         const valueInterval = setInterval(updateValue, 100);
+        // Update the gold price every minute
+        setInterval(fetchGoldPrice, 60000);
     </script>
 </body>
 </html>
