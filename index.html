@@ -12,11 +12,16 @@
         body {
             font-family: 'Ancient Medium', Arial, sans-serif;
             text-align: center;
-            background-color: black;
+            background-image: url('brown-papyrus-paper_53876-14519.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: white;
+            margin: 0;
+            padding: 0;
         }
         .counter-container {
-            background-color: #111;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -34,7 +39,7 @@
     <script>
         const baseValue = 2328.05;
         const incrementPerTenthSecond = 0.00000051025;
-        const startDate = new Date('2024-06-11').getTime(); // Starting from April 16, 2024
+        const startDate = new Date('2024-06-11').getTime(); // Starting from June 11, 2024
         const endDate = new Date('2026-01-01').getTime(); // Up to the end of 2025
 
         function updateValue() {
