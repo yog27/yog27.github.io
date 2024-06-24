@@ -16,17 +16,21 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            color: white;
+            color: black; /* Change text color to black */
             margin: 0;
             padding: 0;
         }
         .counter-container {
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+            /* Remove semi-transparent background */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             max-width: 400px;
             margin: 20px auto;
+        }
+        /* Style for headings and other elements */
+        h1, .gold-price, .value-display {
+            color: black; /* Ensure text inside the counter container is black */
         }
     </style>
 </head>
@@ -76,4 +80,5 @@
         setInterval(fetchGoldPrice, 60000);
     </script>
 </body>
-</html>
+</h
+    tml>
