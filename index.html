@@ -46,11 +46,11 @@
         }
 
         function fetchGoldPrice() {
-            fetch('https://api.coingecko.com/api/v3/simple/price?ids=pax-gold&vs_currencies=usd')
+            fetch('https://data-asg.goldprice.org/dbXRates/USD')
                 .then(response => response.json())
                 .then(data => {
-                    const goldPrice = data['pax-gold'].usd;
-                    document.getElementById('goldPrice').innerHTML = `PAX Gold Price: $${goldPrice.toFixed(2)}`;
+                    const goldPrice = data.items[0].xauPrice;
+                    document.getElementById('goldPrice').innerHTML = `Gold Price: $${goldPrice.toFixed(2)}`;
                 })
                 .catch(error => {
                     console.error('Error fetching gold price:', error);
@@ -67,4 +67,5 @@
         setInterval(fetchGoldPrice, 60000);
     </script>
 </body>
-</html>
+</h
+    tml>
